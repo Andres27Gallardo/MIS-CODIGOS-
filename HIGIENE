@@ -1,0 +1,126 @@
+#LISTA DE ALGORITMO DE HIGIENE:
+#1. DUCHARSE
+#2. LAVADO DE ROPA
+#3. LAVADO DE DIENTES
+#4. LAVADO DEL BAÑO
+#5. LIMPIEZA DEL CUARTO
+#6. DOBLADO DE ROPA LIMPIA
+#7. GUARDADO DE LA ROPA LIMPIA Y DOBLADA
+
+import random
+
+def lavadora():
+    numeroLavado = int(input("El numero de lavado es por semana es: "))
+    for i in range(1, numeroLavado+1):  
+        jabon = "n"
+        print("Cuantas prendas lavarás: ")
+        cantidadDeRopa = int(input())
+        print("Seleccione el nivel del agua")
+        print("1. Alto")
+        print("2. Medio")
+        print("3. Bajo")
+        valorAleatorio1 = random.randint(1, 3)
+        print("Seleccione la temperatura del agua")
+        print("1. Caliente")
+        print("2. Tibia")
+        print("3. Fria")
+        valorAleatorio2 = random.randint(1, 3)
+
+        print("Selecciones los procesos")
+        print("1. Lavado")
+        print("2. Centrifugado")
+        print("3. Enjugado")
+        print("4. Todos los procesos")
+        valorAleatorio3 = random.randint(1, 4)
+
+        def LitrosDeAgua(valorAleatorio1):
+            if valorAleatorio1 == 1:
+                return "Alto"
+            elif valorAleatorio1 == 2:
+                return "Medio"
+            else:
+                return "Bajo"
+
+        def TemperaturaDelAgua1(valorAleatorio2):
+            if valorAleatorio2 == 1:
+                return "Caliente"
+            elif valorAleatorio2 == 2:
+                return "Tibia"
+            else:
+                return "Fria"
+
+        def procesoDeLavado(valorAleatorio3, jabon):
+            if valorAleatorio3 == 1:
+                return "Lavado"
+            elif valorAleatorio3 == 2:
+                return "Centrifugado"
+            elif valorAleatorio3 == 3:
+                return "Enjugado"
+            else:
+                return "Todos los procesos"
+
+        print("---------------------------------------")
+        print("Que numero de lavado es: ", i)
+        print("Escogiste los siguientes procesos")
+        print("")
+        print("Numero de prendas:", cantidadDeRopa)
+        print("")
+        print("Nivel del agua:", LitrosDeAgua(valorAleatorio1))
+        print("Temperatura del agua:", TemperaturaDelAgua1(valorAleatorio2))
+        print("Tu ropa:", procesoDeLavado(valorAleatorio3, jabon))
+        print("---------------------------------------")
+
+def ducharse():
+    numeroDeDuchasPorDia = int(input("El numero ducharse al dia: "))
+    for i in range(1, numeroDeDuchasPorDia+1):  
+        def cabello(valorAleatorio4, valorAleatorio5):
+            if valorAleatorio4 == 1 and valorAleatorio5 == 1:
+                return "El cabello se lavará con shampoo y se enjuagará quedando sin shampoo"
+            elif valorAleatorio4 == 1 and valorAleatorio5 == 2:
+                return "El cabello se lavará con shampoo y no se enjuagará, quedando con shampoo"
+            elif valorAleatorio4 == 2 and valorAleatorio5 == 3:
+                return "El cabello no se podrá enjuagar porque no tiene shampoo"
+
+        def cuerpo(valorAleatorio6, valorAleatorio7):
+            if valorAleatorio6 == 1 and valorAleatorio7 == 1:
+                return "El cuerpo se jabonará con jabon y se enjuagará el jabón, quedando sin jabon"
+            elif valorAleatorio6 == 1 and valorAleatorio7 == 2:
+                return "El cuerpo se jabonará con jabon y no se enjuagará el jabón, quedando con jabon"
+            elif valorAleatorio6 == 2 and valorAleatorio7 == 3:
+                return "El cuerpo no se bañó con jabon, entonces no hay que enjuegar"
+
+        print("Se bañara con Shampoo?")
+        print("1. Si, si se bañara con shampoo")
+        print("2. No, el cuerpo no se bañara con shampoo")
+        valorAleatorio4 = random.randint(1, 2)
+
+        print("Se enjuagara el cabello?")
+        print("1. Si, si me enjuagaré el cabello")
+        print("2. No, no me enjuagaré el cabello")
+        print("3. El cabello no tiene shampoo")
+        valorAleatorio5 = random.randint(1, 3)
+
+        print("Se bañará con jabon para lavarse el cuerpo?")
+        print("1. Si, si me bañaré con jabon")
+        print("2. No, no me bañaré con jabon")
+        valorAleatorio6 = random.randint(1, 2)
+
+        print("Se enjuagará el cuerpo?")
+        print("1. Si, si me enjuagaré el cuerpo")
+        print("2. No, no me enjuagaré el cuerpo")
+        print("3. El cuerpo no tiene jabon para lavar")
+        valorAleatorio7 = random.randint(1, 3)
+
+        print("----------------------------")
+        print("numero de duchas al dia: ", i)
+        print("Estado del cabello: ", cabello(valorAleatorio4, valorAleatorio5))
+        print("El estado del cuerpo : ", cuerpo(valorAleatorio6, valorAleatorio7))
+        print("----------------------------")
+
+print("Escoja la funcion que desee realizar")
+opcion = input("1. lavadora, 2. ducharse: ")
+
+if opcion == "1":
+    lavadora()
+else:
+    ducharse()
