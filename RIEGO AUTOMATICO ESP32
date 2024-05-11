@@ -1,0 +1,69 @@
+//Este es el código final que se implementará al ESP32 agriculture IoT:
+#define BLYNK_TEMPLATE_ID "TMPL2cW0fOwqv"
+#define BLYNK_TEMPLATE_NAME "Agriculture IoT"
+#define BLYNK_AUTH_TOKEN "rb8o1CI8rXcAdwFoCTc-gpjgUUoeUhFJ"
+#define BLYNK_PRINT Serial
+#include <WiFi.h>
+#include <WiFiClient.h>
+#include <BlynkSimpleEsp32.h>
+char network[] = "UCB";
+char password[] = "IKb4rmBX2p8SNduLP0iIBxX#_";
+const int sensorDeAgua = 21;
+#define soilMoisturePin 35
+const int pump = 23;
+bool contenedorDeAguaLleno = false;
+void setup() {
+  Blynk.begin(BLYNK_AUTH_TOKEN,network,password);
+  Serial.begin(115200);
+  pinMode(sensorDeAgua, INPUT);
+  pinMode(pump, OUTPUT);
+}
+
+int valorEnPorcentaje(int valor) {
+  float valorMinimo = 710;
+  float valorMaximo = 4095;
+  float scale = 100.00 / (valorMinimo - valorMaximo);
+  int normal_reading = (valor - valorMaximo) * scale;
+  return normal_reading;
+}
+
+int estadoDelContenedor() {
+  return digitalRead(sensorDeAgua);
+}
+
+void loop() {
+  Blynk.run ();
+  int valor = analogRead(soilMoisturePin);
+  int estimado = valorEnPorcentaje(valor);
+  Serial.println("----------------------------------------");
+  Serial.print("Porcentaje de la humedad de tierra: ");
+  Serial.print(estimado);
+  Serial.println("%");
+  Blynk.virtualWrite(V35, estimado);
+
+  if (estadoDelContenedor()) {
+    Serial.println("Contenedor de agua:        Vacío.");
+    contenedorDeAguaLleno = false;
+  } else {
+    Serial.println("Contenedor de agua:        Lleno.");
+    contenedorDeAguaLleno = true;
+  }
+
+  if (estimado < 30 && !contenedorDeAguaLleno) {
+    Serial.println("El contenedor de agua está vacío, la bomba no se activará.");
+    digitalWrite(pump, LOW);
+  } else if (estimado < 30 && contenedorDeAguaLleno) {
+    Serial.println("Bomba de agua:             Activada.");
+    digitalWrite(pump, HIGH);
+  } else if (estimado >= 30 && estimado < 65 && contenedorDeAguaLleno) {
+    Serial.println("Bomba de agua:             Activada.");
+  } else if (estimado >= 30 && estimado < 65 && !contenedorDeAguaLleno) {
+    Serial.println("El contenedor de agua está vacío, la bomba no se activará.");
+    digitalWrite(pump, LOW);
+  } else if (estimado >= 65) {
+    Serial.println("Bomba de agua:             Desactivada.");
+    digitalWrite(pump, LOW);
+  }
+  Blynk.virtualWrite(V21, estadoDelContenedor());
+  delay(300);
+}
