@@ -1,0 +1,44 @@
+import customtkinter as ctk
+import PIL
+from PIL import Image, ImageTk
+
+contador = 0
+
+def Encendido():
+    ecuacion="El equipo esta Encendido"
+    etiqueta.configure(text=ecuacion)
+
+def Apagado():
+    ecuacion="El equipo esta Apagado"
+    etiqueta.configure(text=ecuacion)
+
+def Cuenta_numeros():
+    global contador
+    contador += 1
+    etiqueta2.configure(text=str(contador))
+
+ventana = ctk.CTk()
+ventana.title("MARK-2")
+ventana.geometry("1500x800")
+ctk.set_appearance_mode("dark")
+
+imagen = ctk.CTkImage(dark_image=Image.open('foto.jpeg'), size=(1400,725))
+imageningresar = ctk.CTkLabel(ventana, text='', image=imagen)
+imageningresar.place(x=0, y=0, relwidth=1, relheight=1)
+
+boton = ctk.CTkButton(ventana, text="Encendido", width=300, height=50, command=Encendido, fg_color=("#F00", "#F00"))
+boton.place(relx=0.5, rely=0.5, anchor='center')
+
+boton2 = ctk.CTkButton(ventana, text="Apagado", width=300, height=50, command=Apagado, fg_color=("#00F", "#00F"))
+boton2.place(relx=0.5, rely=0.6, anchor='center')
+
+etiqueta = ctk.CTkLabel(ventana, text="")
+etiqueta.place(relx=0.5, rely=0.7, anchor='center')
+
+boton2 = ctk.CTkButton(ventana, text="Botellas hechas", width=300, height=50, command=Cuenta_numeros, fg_color=("#000", "#000"))
+boton2.place(relx=0.5, rely=0.8, anchor='center')
+
+etiqueta2 = ctk.CTkLabel(ventana, text="0")
+etiqueta2.place(relx=0.5, rely=0.9, anchor='center')
+
+ventana.mainloop()
