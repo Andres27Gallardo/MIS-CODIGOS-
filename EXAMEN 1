@@ -1,0 +1,47 @@
+Algoritmo BoletaDePago
+	Definir haberBasico, bonoTransporte, valesDeConsumo, bonoAlimentacion, salarioDominal, totalIngresos, afp, totalAfp, liqFinal, añosAntiguedad, totalEgresos, domingos, liquidoPagable Como Real
+	Definir Cargo, tipoEmpresa Como Caracter
+	Escribir "Ingresar datos del  usuario"
+	Escribir "Nombre del usuario"
+	Leer Nombre
+	Escribir " Numero de carnet"
+	Leer CI
+	Escribir "Cargo"
+	Leer Cargo
+	Escribir "Ingrese su haber basico"
+	Leer haberBasico
+	Escribir "Ingrese el mes actual"
+	Leer mes
+	Escribir "Ingrese sus años de antiguedad"
+	Leer añosAntiguedad
+	Escribir "tipo de empresa"
+	Leer tipoEmpresa
+	Escribir "¿Cuantos domingos trabajo?"
+	Leer domingos	
+	Si domingos>0 Entonces
+		salarioDominal=domingos*haberBasico/2*2
+	SiNo
+		salarioDominal=domingos+0
+	Fin Si
+	bonoAlimentacion=60
+	bonoTransporte=157.5
+	valesDeConsumo=88
+	totalIngresos=haberBasico+bonoAlimentacion+bonoTransporte+valesDeConsumo+salarioDominal
+	totalAfp=totalIngresos*0.1275
+	totalEgresos=totalAfp
+	liquidoPagable=totalIngresos-totalEgresos
+	Escribir "-----------" "Boleta de pago" "----------------"
+	Escribir "NOMBRE:" Nombre
+	Escribir "NUMERO DE CARNET:" CI
+	Escribir "CARGO:" Cargo
+	Escribir "TIPO DE EMPRESA:" tipoEmpresa
+	Escribir "HABER BASICO:" haberBasico
+	Escribir "BONO ALIMENTACION:" bonoAlimentacion
+	Escribir "BONO TRANSPORTE:" bonoTransporte
+	Escribir "VALES DE CONSUMO:" valesDeConsumo
+	Escribir "SALARIO DOMINICAL:" salarioDominal
+	Escribir "TOTAL DE INGRESOS:" totalIngresos
+	Escribir "AFP:" totalAfp
+	Escribir "TOTAL EGRESOS:" totalEgresos
+	Escribir "LIQUIDO PAGABLE:" liquidoPagable
+FinAlgoritmo
