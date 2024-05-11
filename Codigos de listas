@@ -1,0 +1,50 @@
+texto=input("Por favor, ingresa una palabra: ")
+textoMay=texto.upper()
+print(textoMay)
+textoMin=texto.lower()
+print(textoMin)
+longitud=len(texto)
+print(longitud)
+
+texto=input("Por favor, ingresa una frase: ")
+texto2=input("Por favor, ingresa tu nombre: ")
+texto3= texto + " " +texto2
+print(texto3)
+
+texto=input("Por favor, ingresa una palabra: ")
+lista1=list(texto)
+eliminar =input("Por favor, ingrese el caracter que desea eliminar: ")
+lista1.remove(eliminar)
+print(lista1)
+
+texto=input("Por favor, ingresa una palabra: ")
+buscar=input("Por favor, ingrese el caracter que desea buscar:")
+repe= 0
+for i in texto:
+    if i == buscar:
+        repe+=1
+print("la letra " + buscar + " se repite " + str(repe)+ " veces")
+
+y=input('Dime una palabra: ').lower()
+if y==y[::-1]:
+  print('Es un Palíndromo')
+else:
+  print('No es un Palíndromo')
+  
+x=input('Dime una palabra: ').lower()  
+y=''.join(reversed(x))
+if y==x:
+ print('Es un Palíndromo')
+else:
+ print('No es un Palíndromo')
+ 
+
+y=input('Dime una palabra: ').lower()
+x=list(y)
+z=list(x)
+z.reverse()
+if z==x:
+ print('Es un Palíndromo')
+else:
+ print('No es un Palíndromo')
+        
