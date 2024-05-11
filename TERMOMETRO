@@ -1,0 +1,21 @@
+import threading
+import time
+import random
+
+print("Termometro encendido")
+
+def termometro():
+    inicio_tiempo = time.time()
+    while time.time() - inicio_tiempo < 10.0:
+        temperatura = random.randint(30, 40)
+        if temperatura < 37:
+            print("El niño no tiene fiebre")
+        else:
+            print("El niño tiene fiebre")
+        time.sleep(1)
+
+t = threading.Thread(target=termometro)
+t.start()
+
+time.sleep(10)
+print("Termometro apagado")
