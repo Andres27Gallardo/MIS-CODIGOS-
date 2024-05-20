@@ -1,0 +1,43 @@
+def primerafuncion(texto1, texto2):
+    contador_texto1 = 0
+    contador_texto2 = 0
+    contador_texto1_texto2 = 0
+
+    for i in range(1, 101):
+        if i % 3 == 0 and i % 5 == 0:
+            print(texto1 + texto2)
+            contador_texto1_texto2 += 1
+        elif i % 3 == 0:
+            print(texto1)
+            contador_texto1 += 1
+        elif i % 5 == 0:
+            print(texto2)
+            contador_texto2 += 1
+        else:
+            print(i)
+
+    print(f"'{texto1}' se imprimió {contador_texto1} veces")
+    print(f"'{texto2}' se imprimió {contador_texto2} veces")
+    print(f"'{texto1 + texto2}' se imprimió {contador_texto1_texto2} veces")
+
+    numeros_impresos = 100 - (contador_texto1 + contador_texto2 + contador_texto1_texto2)
+    return numeros_impresos
+
+def SegundaFuncion(texto1, texto2, contador_texto1, contador_texto2, contador_texto1_texto2):
+    vector1 = list(texto1)
+    vector2 = list(texto2)
+
+    vector1_invertido = vector1[::-1]
+    vector2_invertido = vector2[::-1]
+
+    total_letras = len(vector1_invertido) + len(vector2_invertido)
+    vector_total = vector1_invertido + vector2_invertido
+
+    for i in range(1, contador_texto1 + contador_texto2 + contador_texto1_texto2 + 1):
+        letra = vector_total[(i - 1) % total_letras]
+        print(f"Letra {i}: {letra}")
+
+resultado = primerafuncion('Hola', 'Mundo')
+print(f"Los números se imprimieron {resultado} veces.")
+
+SegundaFuncion('Hola', 'Mundo', 4, 6, 2)
